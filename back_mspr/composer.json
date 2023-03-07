@@ -1,0 +1,12 @@
+{
+    "require": {
+        "symfony/security-bundle": "^5.4",
+        "symfonycasts/verify-email-bundle": "^1.13",
+        "symfony/orm-pack": "^2.3",
+        "symfony/sendgrid-mailer": "^5.4"
+    },
+    "require-dev": {
+        "symfony/profiler-pack": "^1.0",
+        "symfony/maker-bundle": "^1.43"
+    }
+}

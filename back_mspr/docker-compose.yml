@@ -1,0 +1,37 @@
+version: '3.7'
+services:
+  php:
+    build: './docker/php'
+    ports: ['9000:9000']
+    volumes: ['./symfony/:/var/www/symfony:cached']
+  nginx:
+    build: './docker/nginx'
+    ports: ['4501:80']
+    volumes: ['./symfony/:/var/www/symfony:cached']
+  mysql:
+    image: mysql:5.7
+    ports: [ '4503:3306' ]
+    volumes: [ './docker/data/db:/var/lib/mysql' ]
+    command: --sql_mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
+    environment:
+      - MYSQL_ROOT_PASSWORD=alternants*
+      - MYSQL_DATABASE=ecom
+      - MYSQL_USER=alternants
+      - MYSQL_PASSWORD=alternants
+  phpmyadmin:
+    image: phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 4503
+      PMA_ARBITRARY: 1
+    ports:
+      - 4502:80
+    links:
+      - mysql
+  mailcatcher:
+   restart: on-failure
+   image: dockage/mailcatcher:0.8.2
+   ports:
+     - 9522:1080
+     - 9520:1025
+

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { color: black;margin: 10em auto; max-width: 500px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+
+</style>
+
+<div class="example-wrapper">
+    <h1>Bienvenue sur votre page !</h1>
+    <image src={{ asset('media/image1.jpg')}}></image>
+</div>
+{% endblock %}
